@@ -36,6 +36,15 @@ class EventRegistry(val plugin: JavaPlugin) {
         eventHandlers[T::class.java] = EventData(handler as (Event) -> Unit, priority, permission, ignoreCancelled)
     }
 
+    inline fun <reified T : Event> event(
+        noinline handler: (T) -> Unit
+    ) {
+        event(
+            priority = EventPriority.NORMAL,
+            handler = handler
+        )
+    }
+
     fun register() {
         eventHandlers.forEach { (eventClass, eventData) ->
             val (handler, priority, permission, ignoreCancelled) = eventData
@@ -44,7 +53,7 @@ class EventRegistry(val plugin: JavaPlugin) {
                 object : Listener {},
                 priority,
                 { _, event ->
-                    if (permission == null || event is PlayerEvent && event.player.hasPermission(permission)) {
+                    if (permission == null || (event is PlayerEvent && event.player.hasPermission(permission))) {
                         handler(event)
                     }
                 },
