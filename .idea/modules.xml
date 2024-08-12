@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Origins.main.iml" filepath="$PROJECT_DIR$/.idea/modules/Origins.main.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/codes.shiftmc.Origins.main.iml" filepath="$PROJECT_DIR$/.idea/modules/codes.shiftmc.Origins.main.iml" />
     </modules>
   </component>
 </project>
