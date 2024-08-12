@@ -5,10 +5,7 @@ import codes.shiftmc.origins.origin.Impact
 import codes.shiftmc.origins.origin.Origin
 import codes.shiftmc.origins.util.scheduleNextTick
 import codes.shiftmc.origins.util.toMiniMessage
-import com.destroystokyo.paper.MaterialSetTag
-import io.papermc.paper.registry.tag.Tag
 import net.kyori.adventure.text.Component
-import org.bukkit.Material
 import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
@@ -76,12 +73,12 @@ class Jockey : Ability {
 
 class BiteSized : Ability {
     private val modifiers = mutableMapOf(
-        Attribute.GENERIC_MAX_HEALTH to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.5, Operation.MULTIPLY_SCALAR_1),
-        Attribute.GENERIC_MOVEMENT_SPEED to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.015, Operation.ADD_NUMBER),
-        Attribute.PLAYER_ENTITY_INTERACTION_RANGE to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.25, Operation.ADD_NUMBER),
-        Attribute.PLAYER_BLOCK_INTERACTION_RANGE to AttributeModifier(NamespacedKey("origins", "bite-sized"), -1.5, Operation.ADD_NUMBER),
-        Attribute.GENERIC_STEP_HEIGHT to AttributeModifier(NamespacedKey("origins", "bite-sized"), 0.5, Operation.ADD_NUMBER),
-        Attribute.GENERIC_SCALE to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.75, Operation.ADD_NUMBER),
+        Attribute.GENERIC_MAX_HEALTH to AttributeModifier("bite-sized", -0.5, Operation.MULTIPLY_SCALAR_1),
+        Attribute.GENERIC_MOVEMENT_SPEED to AttributeModifier("bite-sized", -0.015, Operation.ADD_NUMBER),
+        Attribute.PLAYER_ENTITY_INTERACTION_RANGE to AttributeModifier("bite-sized", -0.25, Operation.ADD_NUMBER),
+        Attribute.PLAYER_BLOCK_INTERACTION_RANGE to AttributeModifier("bite-sized", -1.5, Operation.ADD_NUMBER),
+        Attribute.GENERIC_STEP_HEIGHT to AttributeModifier("bite-sized", 0.5, Operation.ADD_NUMBER),
+        Attribute.GENERIC_SCALE to AttributeModifier("bite-sized", -0.75, Operation.ADD_NUMBER),
     )
 
     override fun onEnable(player: Player) {
