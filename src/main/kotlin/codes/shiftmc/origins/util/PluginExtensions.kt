@@ -16,19 +16,3 @@ fun getStaticPlugin(): JavaPlugin {
 fun JavaPlugin.registerEvents(vararg listeners: Listener) {
     listeners.forEach { server.pluginManager.registerEvents(it, this) }
 }
-
-fun scheduleRepeatingTask(delay: Long, period: Long, task: () -> Unit) {
-    plugin ?: throw IllegalStateException("Plugin is not set. Please set the plugin using setStaticPlugin method.")
-    plugin!!.server.scheduler.runTaskTimer(plugin!!, task, delay, period)
-}
-
-fun scheduleDelayedTask(delay: Long, task: () -> Unit) {
-    plugin ?: throw IllegalStateException("Plugin is not set. Please set the plugin using setStaticPlugin method.")
-    plugin!!.server.scheduler.runTaskLater(plugin!!, task, delay)
-}
-fun scheduleDelayedTask(delay: Int, task: () -> Unit) = scheduleDelayedTask(delay.toLong(), task)
-
-fun scheduleNextTick(task: () -> Unit) {
-    plugin ?: throw IllegalStateException("Plugin is not set. Please set the plugin using setStaticPlugin method.")
-    plugin!!.server.scheduler.runTask(plugin!!, task)
-}

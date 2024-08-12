@@ -3,10 +3,9 @@ package codes.shiftmc.origins.origins
 import codes.shiftmc.origins.origin.Ability
 import codes.shiftmc.origins.origin.Impact
 import codes.shiftmc.origins.origin.Origin
-import codes.shiftmc.origins.util.scheduleNextTick
+import codes.shiftmc.origins.util.getStaticPlugin
 import codes.shiftmc.origins.util.toMiniMessage
 import net.kyori.adventure.text.Component
-import org.bukkit.NamespacedKey
 import org.bukkit.attribute.Attribute
 import org.bukkit.attribute.AttributeModifier
 import org.bukkit.attribute.AttributeModifier.Operation
@@ -67,7 +66,9 @@ class Jockey : Ability {
         val entity = event.rightClicked
 
         if (entity.type !in allowedEntities) return
-        scheduleNextTick { entity.addPassenger(player) }
+        player.scheduler.run(getStaticPlugin(), {
+            entity.addPassenger(player)
+        }, null)
     }
 }
 

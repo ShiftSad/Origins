@@ -28,12 +28,12 @@ object OriginRegistry {
         enabled = true
         originKey = NamespacedKey(plugin, "origin")
 
-        Bukkit.getScheduler().runTaskTimer(plugin, Runnable {
+        Bukkit.getGlobalRegionScheduler().runAtFixedRate(plugin, {
             // Tick
             Bukkit.getOnlinePlayers().forEach { player ->
                 getOrigin(player).abilities().forEach { it.tick(player) }
             }
-        }, 0, 1)
+        }, 1, 1)
     }
 
     fun setOrigin(player: Player, origin: Origin) {
