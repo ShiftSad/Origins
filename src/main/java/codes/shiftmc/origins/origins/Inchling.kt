@@ -75,8 +75,6 @@ class Jockey : Ability {
 }
 
 class BiteSized : Ability {
-    override fun tick(player: Player) { }
-
     private val modifiers = mutableMapOf(
         Attribute.GENERIC_MAX_HEALTH to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.5, Operation.MULTIPLY_SCALAR_1),
         Attribute.GENERIC_MOVEMENT_SPEED to AttributeModifier(NamespacedKey("origins", "bite-sized"), -0.015, Operation.ADD_NUMBER),

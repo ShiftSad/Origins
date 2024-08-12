@@ -6,7 +6,6 @@ import org.bukkit.entity.Player
 import org.bukkit.event.Event
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.EntityEvent
-import org.bukkit.event.entity.PlayerDeathEvent
 import org.bukkit.event.player.*
 import org.bukkit.plugin.java.JavaPlugin
 
@@ -20,13 +19,13 @@ fun eventHandlers(plugin: JavaPlugin) {
             } ?: return
 
             val origin = OriginRegistry.getOrigin(player)
-            when (event) {
-                is PlayerInteractEntityEvent -> origin.abilities().forEach { it.onPlayerInteractEntity(event) }
-                is PlayerBedEnterEvent -> origin.abilities().forEach { it.onPlayerBedEnter(event) }
-                is PlayerItemConsumeEvent -> origin.abilities().forEach { it.onPlayerItemConsume(event) }
-                is PlayerSwapHandItemsEvent -> origin.abilities().forEach { it.onPlayerSwapHandItems(event) }
-                is PlayerToggleSneakEvent -> origin.abilities().forEach { it.onPlayerToggleSneak(event) }
-                is PlayerDeathEvent -> origin.abilities().forEach { it.onPlayerDeath(event) }
+            val eventClass = event::class
+            origin.abilities().forEach {
+                val method = it::class.java.declaredMethods.find { methods ->
+                    methods.name == "on${eventClass.simpleName?.removeSuffix("Event")}"
+                } ?: return@forEach
+
+                method.invoke(it, event)
             }
         }
 
@@ -36,6 +35,5 @@ fun eventHandlers(plugin: JavaPlugin) {
         event<PlayerItemConsumeEvent>(::origin)
         event<PlayerSwapHandItemsEvent>(::origin)
         event<PlayerToggleSneakEvent>(::origin)
-        event<PlayerDeathEvent>(::origin)
     }
 }
