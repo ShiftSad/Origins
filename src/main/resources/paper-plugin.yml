@@ -1,8 +1,8 @@
 name: Origins
-version: '${version}'
+version: '0.0.0.0.0.1'
 main: codes.shiftmc.origins.Origins
 loader: codes.shiftmc.origins.OriginLoader
-description: Paper Test Plugin
+description: Basicamente, racismo no Minecraft Vanilla 👍
 api-version: '1.20.6'
 folia-supported: true
 dependencies:
