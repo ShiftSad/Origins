@@ -35,5 +35,6 @@ fun eventHandlers(plugin: JavaPlugin) {
         event<PlayerItemConsumeEvent>(::origin)
         event<PlayerSwapHandItemsEvent>(::origin)
         event<PlayerToggleSneakEvent>(::origin)
+        event<PlayerInteractEvent>(::origin)
     }
 }
