@@ -3,6 +3,7 @@ package codes.shiftmc.origins.origins
 import codes.shiftmc.origins.origin.Ability
 import codes.shiftmc.origins.origin.Impact
 import codes.shiftmc.origins.origin.Origin
+import codes.shiftmc.origins.util.getStaticPlugin
 import codes.shiftmc.origins.util.toMiniMessage
 import net.kyori.adventure.text.Component
 import org.bukkit.attribute.Attribute
@@ -75,12 +76,24 @@ class AquaAffinity : Ability {
 
         // Give night vision and dolphin grace to the player whenever he is underwater
         if (player.isUnderWater) {
-            player.addPotionEffect(nightVision)
-            player.addPotionEffect(dolphinGrace)
+            applyEffect(player, nightVision)
+            applyEffect(player, dolphinGrace)
         } else {
-            player.removePotionEffect(nightVision.type)
-            player.removePotionEffect(dolphinGrace.type)
+            removeEffect(player, nightVision)
+            removeEffect(player, dolphinGrace)
         }
+    }
+
+    private fun applyEffect(player: Player, effect: PotionEffect) {
+        player.scheduler.run(getStaticPlugin(), {
+            player.addPotionEffect(effect)
+        }, null)
+    }
+
+    private fun removeEffect(player: Player, effect: PotionEffect) {
+        player.scheduler.run(getStaticPlugin(), {
+            player.removePotionEffect(effect.type)
+        }, null)
     }
 }
 
