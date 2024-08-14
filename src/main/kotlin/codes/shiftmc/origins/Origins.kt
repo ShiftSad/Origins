@@ -21,6 +21,7 @@ class Origins : JavaPlugin() {
         OriginRegistry.register(Human())
         OriginRegistry.register(Avian())
         OriginRegistry.register(Merling())
+        OriginRegistry.register(Rockborn())
         // Temporary removed since it uses ItemsAdder. I'll be working to port for Folia,
         // That doesn't support it.
         // OriginRegistry.register(Tempus())

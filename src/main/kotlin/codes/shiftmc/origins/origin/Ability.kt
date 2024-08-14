@@ -3,12 +3,7 @@ package codes.shiftmc.origins.origin
 import org.bukkit.entity.Player
 import org.bukkit.event.entity.EntityDamageEvent
 import org.bukkit.event.entity.PlayerDeathEvent
-import org.bukkit.event.player.PlayerBedEnterEvent
-import org.bukkit.event.player.PlayerInteractEntityEvent
-import org.bukkit.event.player.PlayerItemConsumeEvent
-import org.bukkit.event.player.PlayerMoveEvent
-import org.bukkit.event.player.PlayerSwapHandItemsEvent
-import org.bukkit.event.player.PlayerToggleSneakEvent
+import org.bukkit.event.player.*
 
 interface Ability {
 
@@ -23,4 +18,5 @@ interface Ability {
     fun onPlayerSwapHandItems(event: PlayerSwapHandItemsEvent) {}
     fun onPlayerToggleSneak(event: PlayerToggleSneakEvent) {}
     fun onPlayerDeath(event: PlayerDeathEvent) {}
+    fun onPlayerInteract(event: PlayerInteractEvent) {}
 }
