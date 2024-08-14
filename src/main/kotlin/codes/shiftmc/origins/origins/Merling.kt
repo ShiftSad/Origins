@@ -84,6 +84,12 @@ class AquaAffinity : Ability {
         }
     }
 
+    override fun onDisable(player: Player) {
+        player.removeAttribute(diggingSpeed.second.name, diggingSpeed.first)
+        removeEffect(player, nightVision)
+        removeEffect(player, dolphinGrace)
+    }
+
     private fun applyEffect(player: Player, effect: PotionEffect) {
         player.scheduler.run(getStaticPlugin(), {
             player.addPotionEffect(effect)
