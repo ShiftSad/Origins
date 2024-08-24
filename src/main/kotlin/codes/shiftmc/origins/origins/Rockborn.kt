@@ -1,6 +1,7 @@
 package codes.shiftmc.origins.origins
 
 import codes.shiftmc.origins.abilities.BiteSized
+import codes.shiftmc.origins.abilities.SharpEater
 import codes.shiftmc.origins.origin.Ability
 import codes.shiftmc.origins.origin.Impact
 import codes.shiftmc.origins.origin.Origin
@@ -25,7 +26,8 @@ class Rockborn : Origin {
         """.trimIndent().toMiniMessage()
 
     override fun abilities(): List<Ability> = listOf(
-        BiteSized(health = -0.24, movementSpeed = -0.01, playerBlockInteractionRange = 0.0, scale = -0.25)
+        BiteSized(health = -0.24, movementSpeed = -0.01, playerBlockInteractionRange = 0.0, scale = -0.25),
+        SharpEater()
     )
 
 }
